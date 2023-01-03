@@ -1,11 +1,11 @@
-FROM node:18-alpine
+FROM node:18
 
 WORKDIR /next/webui
 
 COPY package*.json .
 
-RUN yarn
+RUN npm install
 
 EXPOSE 3000
 
-CMD ["yarn", "dev"]
+CMD ["yarn" ,"dev"]

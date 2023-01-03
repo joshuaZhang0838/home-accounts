@@ -6,6 +6,7 @@ services:
       dockerfile: dockerfile.dev
     container_name: webui-next
     volumes:
+      - /.next
       - .:/next/webui
       - node_modules:/next/webui/node_modules
     ports:
