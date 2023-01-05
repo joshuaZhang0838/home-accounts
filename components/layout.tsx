@@ -15,7 +15,6 @@ import MonetizationOnIcon from '@mui/icons-material/MonetizationOn';
 import type { ReactElement } from 'react';
 import boyImg from '../public/boy.png';
 import { LinkText, LinkButton } from '../components/link';
-import { Drawer } from '@mui/material';
 
 const pages = ['invoice', 'accountEdit'];
 const settings = ['Profile', 'Logout'];
