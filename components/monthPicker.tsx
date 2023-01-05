@@ -4,14 +4,14 @@ import { DatePicker } from '@mui/x-date-pickers/DatePicker';
 import { subMonths } from 'date-fns';
 
 interface dateFuncProps {
-  onSelectDate: (date: Date | null) => void;
+  onSelectDate: (date: Date) => void;
 }
 
 const MonthPicker = (props: dateFuncProps) => {
   const [minDate, setMinDate] = useState<Date>();
   const [maxDate, setMaxDate] = useState<Date>();
-  const [tempDate, setTempDate] = useState<Date | null>(new Date());
-  const [selectDate, setSelectDate] = useState<Date | null>(null);
+  const [selectDate, setSelectDate] = useState<Date>(new Date());
+  //const [selectDate, setSelectDate] = useState<Date>();
 
   const setInitialDate = () => {
     const now = new Date();
@@ -22,22 +22,25 @@ const MonthPicker = (props: dateFuncProps) => {
   useEffect(() => {
     setInitialDate();
   }, []);
-  useEffect(() => {
-    props.onSelectDate(selectDate);
-  }, [selectDate]);
+  // useEffect(() => {
+  //   props.onSelectDate(selectDate as Date);
+  // }, [selectDate]);
   return (
     <DatePicker
       views={['year', 'month']}
       label="Year and Month"
       minDate={minDate}
       maxDate={maxDate}
-      value={tempDate}
+      value={selectDate}
       onChange={(newDate) => {
-        setTempDate(newDate);
+        console.log(`newDate is ${newDate}`);
+        setSelectDate(newDate as Date);
       }}
-      onClose={() => {
-        setSelectDate(tempDate);
-      }}
+      // onClose={() => {
+      //   console.log(`selectDate is ${selectDate}`);
+      //   props.onSelectDate(selectDate as Date);
+      //   //setSelectDate(tempDate);
+      // }}
       renderInput={(params) => <TextField {...params} helperText={null} />}
     />
   );

@@ -1,18 +1,31 @@
-import { useState, useEffect } from 'react';
-import { Box, TextField } from '@mui/material';
-import { DatePicker } from '@mui/x-date-pickers/DatePicker';
-import { parse } from 'date-fns';
+import { useState, useEffect, Fragment } from 'react';
+import { Box } from '@mui/material';
+import axios from 'axios';
 import MonthPicker from '../components/monthPicker';
+import { getYear, getMonth } from 'date-fns';
 
 export default function Invoice() {
-  const [date, setDate] = useState<Date | null>(new Date());
-  useEffect(() => {
-    // Update the document title using the browser API
-    console.log(date);
-  }, [date]);
+  //const [date, setDate] = useState<Date>(new Date());
+  const [st, setSt] = useState<string>('');
+
+  const fetchUser = async (date: Date) => {
+    //const ff = await axios.get('/api/invoices');
+    //console.log(ff);
+    //setSt(ff.data.name);
+    let year = getYear(date);
+    let month = getMonth(date);
+    console.log(`the year is ${year}`);
+    console.log(`the month is ${month}`);
+  };
+  // useEffect(() => {ya
+  //   fetchUser();
+  // }, [date]);
   return (
-    <Box sx={{ ml: 3, mt: 3 }}>
-      <MonthPicker onSelectDate={setDate} />
-    </Box>
+    <Fragment>
+      <Box sx={{ ml: 3, mt: 3 }}>
+        <MonthPicker onSelectDate={fetchUser} />
+      </Box>
+      <Box>{st}</Box>
+    </Fragment>
   );
 }
